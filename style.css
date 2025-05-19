@@ -1,0 +1,224 @@
+/* style.css */
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Gebruik een zachte sans-serif */
+    color: #555; /* Donkergrijze tekstkleur */
+    background-color: #f8f4f1; /* Crèmekleurige achtergrond */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #fff; /* Witte achtergrond voor de header */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Verdeel de logo en navigatie */
+    align-items: center; /* Centreer verticaal */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Zachte schaduw */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-right: 10px; /* Afstand tussen logo en tagline */
+    max-width: 100px; /* Stel een maximale breedte in voor het logo */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    color: #333;
+}
+
+.afspraak-knop {
+    background-color: #a6c79a; /* Zachtgroen */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.afspraak-knop:hover {
+    background-color: #84a17c;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    background-color: #f0f4f7; /* Lichte achtergrond voor de hero-sectie */
+}
+
+.hero-content {
+    flex: 1; /* Neem de beschikbare ruimte in */
+    padding-right: 30px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif; /* Elegant serif lettertype */
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.hero p {
+    margin-bottom: 25px;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: right;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Zachte afgeronde hoeken voor de afbeelding */
+}
+
+.mijn-benadering {
+    padding: 50px;
+    text-align: center;
+}
+
+.mijn-benadering h2 {
+    font-family: 'Playfair Display', serif; /* Elegant serif lettertype */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+footer {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+    border-top: 1px solid #eee;
+}
+
+/* Media Queries voor Responsive Design (voorbeeld) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .hero-image {
+        text-align: center;
+    }
+
+    
+}
+/* Style voor de over-mij pagina */
+
+.over-mij-hero {
+    display: flex; /* Zet de hero sectie in flexbox */
+    align-items: center; /* Centreer verticaal */
+    padding: 50px;
+    background-color: #f4ede7; /* Een subtiele achtergrondkleur */
+}
+
+.over-mij-hero-content {
+    flex: 1;  /* Laat de content de beschikbare ruimte innemen */
+    padding-right: 30px;
+}
+
+.over-mij-hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.over-mij-hero-content p {
+    margin-bottom: 25px;
+}
+
+.over-mij-hero-image {
+    flex: 1;  /* Laat de afbeelding de beschikbare ruimte innemen */
+    text-align: right;
+}
+
+.over-mij-hero-image img {
+    max-width: 100%; /* Maak de afbeelding responsive */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optioneel: voeg een subtiele schaduw toe */
+}
+
+.over-mij-content {
+    padding: 50px;
+    text-align: left; /* Of center, afhankelijk van je voorkeur */
+}
+
+.over-mij-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;  /* Optioneel: voeg een lijn toe onder de titels */
+    padding-bottom: 10px;
+}
+
+/* Responsive Design aanpassingen voor de Over Mij pagina */
+@media (max-width: 768px) {
+    .over-mij-hero {
+        flex-direction: column; /* Stapel de elementen verticaal */
+        text-align: center;
+    }
+
+    .over-mij-hero-content {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .over-mij-hero-image {
+        text-align: center;
+    }
+}

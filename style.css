@@ -68,7 +68,7 @@ nav a:hover {
 
 .afspraak-knop {
     background-color: #a6c79a; /* Zachtgroen */
-    color: #fff;
+    color: #fff !important;
     padding: 10px 20px;
     border-radius: 25px;
     text-decoration: none;

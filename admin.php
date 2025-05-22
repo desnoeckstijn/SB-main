@@ -188,7 +188,7 @@ $pdo = null; // Sluit de database verbinding
                     <tbody>
                         <?php foreach ($aanvragen as $aanvraag): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($aanvraag['id']); ?></td>
+                                <td><?php echo htmlspecialchars($aanvraag['id'] ?? ''); ?></td>
                                 <td><?php echo htmlspecialchars($aanvraag['naam']); ?></td>
                                 <td><?php echo htmlspecialchars($aanvraag['adres']); ?></td>
                                 <td><?php echo htmlspecialchars($aanvraag['email']); ?></td>

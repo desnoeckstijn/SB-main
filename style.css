@@ -176,6 +176,42 @@ nav a:hover {
     text-decoration: underline; /* Onderstrepen bij hover */
 }
 
+/* Styling for the image-text section */
+.image-text-section {
+    display: flex;
+    align-items: center; /* Vertically align items in the center */
+    gap: 40px; /* Add space between the image and text */
+}
+
+.image-text-section .image-container {
+    flex: 1; /* Allow image container to grow and shrink */
+    min-width: 250px; /* Minimum width for the image container */
+}
+
+.image-text-section .image-container img {
+    display: block; /* Remove extra space below the image */
+    max-width: 100%; /* Make the image responsive */
+    height: auto;
+    border-radius: 10px; /* Optional: add rounded corners to the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
+
+.image-text-section .text-container {
+    flex: 2; /* Allow text container to take up more space */
+}
+
+/* Responsive adjustments for the image-text section */
+@media (max-width: 768px) {
+    .image-text-section {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        gap: 20px; /* Adjust gap for stacked layout */
+    }
+
+    .image-text-section .image-container {
+        min-width: 100%; /* Full width for image container on small screens */
+    }
+}
+
 /* Media Queries voor Responsive Design (voorbeeld) */
 @media (max-width: 768px) {
     header {

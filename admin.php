@@ -103,13 +103,7 @@ try {
     $stmt = $pdo->query($select_sql);
     $aanvragen = $stmt->fetchAll();
 
-    // DEBUG: Inspect fetched data
-    echo '<pre>';
-    print_r(array_slice($aanvragen, 0, 5)); // Print first 5 entries for brevity
-    echo '</pre>';
-
 } catch (\PDOException $e) {
-    // Log database query fouten
     error_log("Admin Database Query Fout: " . $e->getMessage());
     die('Er is een fout opgetreden bij het ophalen van de aanvragen. Controleer de logs.');
 }

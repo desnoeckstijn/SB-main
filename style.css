@@ -35,8 +35,17 @@ nav ul {
     display: flex;
 }
 
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Zorgt voor verticale uitlijning van alle items */
+    gap: 20px; /* Voegt ruimte toe tussen de items */
+}
+
 nav li {
-    margin-left: 20px;
+    /* margin-left: 20px; is vervangen door gap op ul */
 }
 
 nav a {
@@ -123,37 +132,74 @@ footer {
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Centreer de header items op mobiel */
+        padding: 15px; /* Pas padding aan voor mobiel */
     }
 
     .logo {
-        margin-bottom: 10px;
+        margin-bottom: 15px; /* Verhoog de afstand onder het logo */
+    }
+
+    .logo span {
+        font-size: 0.9em; /* Pas lettergrootte van tagline aan */
     }
 
     nav ul {
         flex-direction: column;
+        width: 100%; /* Zorg dat de nav de volledige breedte gebruikt */
+        align-items: center; /* Centreer de menu-items verticaal */
+        gap: 10px; /* Ruimte tussen de menu-items op mobiel */
     }
 
     nav li {
         margin-left: 0;
-        margin-bottom: 10px;
+        /* margin-bottom: 10px; is vervangen door gap op ul */
+        width: 100%; /* Zorg dat elk list-item de volledige breedte gebruikt */
+        text-align: center; /* Centreer de tekst in de list-items */
     }
 
+    nav a {
+        display: block; /* Zorg dat de link de volledige klikbare ruimte inneemt */
+        padding: 10px; /* Vergroot het klikbare gebied */
+    }
+
+    .afspraak-knop {
+        margin-top: 10px; /* Voeg wat ruimte toe boven de knop op mobiel */
+        width: auto; /* Zorg dat de knop niet de volledige breedte inneemt */
+        padding: 10px 20px; /* Behoud de padding van de knop */
+    }
+
+
     .hero {
-        flex-direction: column;
+        flex-direction: column; /* Stapel content en afbeelding */
         text-align: center;
+        padding: 30px 15px; /* Pas padding aan voor mobiel */
     }
 
     .hero-content {
         padding-right: 0;
-        margin-bottom: 20px;
+        margin-bottom: 30px; /* Ruimte tussen content en afbeelding */
+    }
+
+    .hero h1 {
+        font-size: 2em; /* Pas lettergrootte aan voor mobiel */
+    }
+
+    .hero p {
+        font-size: 1em; /* Pas lettergrootte aan voor mobiel */
     }
 
     .hero-image {
         text-align: center;
     }
 
-    
+    .mijn-benadering {
+        padding: 30px 15px; /* Pas padding aan voor mobiel */
+    }
+
+    .mijn-benadering h2 {
+        font-size: 1.8em; /* Pas lettergrootte aan voor mobiel */
+    }
 }
 /* Style voor de over-mij pagina */
 

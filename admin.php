@@ -158,10 +158,60 @@ $pdo = null; // Sluit de database verbinding
             }
         }
 
+
+        /* Styling for the Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 600px; /* Max width for larger screens */
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #modalDetails p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        #modalDetails strong {
+            display: inline-block;
+            width: 120px; /* Adjust as needed for alignment */
+        }
+
     </style>
 </head>
 <body>
-
     <main>
         <section class="content-section admin-content"> <!-- Voeg extra klasse toe -->
             <h1>Aanvragen Overzicht</h1>
@@ -174,31 +224,19 @@ $pdo = null; // Sluit de database verbinding
                         <tr>
                             <th>ID</th>
                             <th>Naam</th>
-                            <th>Adres</th>
-                            <th>E-mail</th>
-                            <th>Telefoon</th>
-                            <th>Massage Keuze</th>
                             <th>Voorkeur Tijdstip</th>
-                            <th>Opmerkingen</th>
                             <th>Datum/Tijd</th>
-                            <th>reCAPTCHA Succes</th>
-                            <th>reCAPTCHA Score</th>
+                            <th>Meer Info</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($aanvragen as $aanvraag): ?>
+                        <?php foreach ($aanvragen as $index => $aanvraag): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($aanvraag['ID'] ?? ''); ?></td>
                                 <td><?php echo htmlspecialchars($aanvraag['naam']); ?></td>
-                                <td><?php echo htmlspecialchars($aanvraag['adres']); ?></td>
-                                <td><?php echo htmlspecialchars($aanvraag['email']); ?></td>
-                                <td><?php echo htmlspecialchars($aanvraag['phone']); ?></td>
-                                <td><?php echo htmlspecialchars($aanvraag['massage']); ?></td>
                                 <td><?php echo htmlspecialchars($aanvraag['tijdstip']); ?></td>
-                                <td><?php echo nl2br(htmlspecialchars($aanvraag['opmerkingen'])); ?></td>
                                 <td><?php echo htmlspecialchars($aanvraag['submission_time']); ?></td>
-                                <td><?php echo $aanvraag['recaptcha_success'] ? 'Ja' : 'Nee'; ?></td>
-                                <td><?php echo htmlspecialchars($aanvraag['recaptcha_score'] ?? 'N/A'); ?></td>
+                                <td><button class="more-info-btn" data-id="<?php echo htmlspecialchars($aanvraag['ID'] ?? ''); ?>">Meer Info</button></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -206,6 +244,22 @@ $pdo = null; // Sluit de database verbinding
             <?php endif; ?>
         </section>
     </main>
+
+    <!-- Meer Info Modal Structure -->
+    <div id="moreInfoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Details Aanvraag</h2>
+            <div id="modalDetails">
+                <!-- Details will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Embed PHP data as JSON for JavaScript
+        const aanvragenData = <?php echo json_encode($aanvragen ?? []); ?>;
+    </script>
 
 </body>
 </html>

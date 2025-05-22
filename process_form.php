@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          // 5. Maak verbinding met de database
 
        try {
-            $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4";
+            $dsn = "mysql:host=$db_host;port=3306;dbname=$db_name;charset=utf8mb4";
             $options = [
                 PDO::ATTR_ERRMODE            =>(string) PDO::ERRMODE_EXCEPTION, // Gooi exceptions bij fouten
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Haal data op als associatieve array

@@ -1,12 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerButton = document.querySelector('.hamburger-icon');
-    const header = document.querySelector('header');
-
-    if (hamburgerButton && header) {
-        hamburgerButton.addEventListener('click', function() {
-            header.classList.toggle('nav-open');
-        });
-    }
+// ... (bestaande code voor hamburgermenu) ...
 
     // Functionaliteit voor het contactformulier op de contactpagina
     const openFormButton = document.getElementById('open-form-button');
@@ -21,27 +13,58 @@ document.addEventListener('DOMContentLoaded', function() {
             openFormButton.style.display = 'none'; // Verberg de knop na klik
         });
 
-        // Basis formulier submit afhandeling (client-side)
+        // Formulier submit afhandeling (stuurt data naar server)
         appointmentForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Voorkom standaard formulier verzending
 
-            // Hier zou je normaal de formulierdata verzenden naar je server-side script via AJAX (fetch of XMLHttpRequest).
-            // Je server-side script zou dan de reCAPTCHA verifiëren en de e-mail versturen.
-            // Voor nu simuleren we een succesvolle verzending en tonen we de bevestiging.
+            // Verzamel formuliergegevens
+            const formData = new FormData(appointmentForm);
+            const formActionUrl = appointmentForm.getAttribute('action');
 
-            console.log('Formulier ingediend (simulatie). Gegevens zouden nu naar de server gestuurd worden.');
-            // Toon bevestigingsboodschap
-            confirmationMessage.textContent = 'Bedankt! Je aanvraag werd goed verzonden.';
-            confirmationMessage.style.display = 'block';
+            // Verberg eerdere berichten en reset
+            confirmationMessage.style.display = 'none';
+            confirmationMessage.textContent = '';
 
-            // Optioneel: Verberg het formulier na verzending
-            // formContainer.classList.remove('active');
-            // openFormButton.style.display = 'block'; // Toon de knop eventueel weer
 
-            // Optioneel: Reset het formulier
-            // appointmentForm.reset();
+            // Stuur gegevens met fetch API naar je server-side script
+            fetch(formActionUrl, {
+                method: 'POST',
+                body: formData // FormData bevat alle velden, inclusief reCAPTCHA response
+            })
+            .then(response => {
+                // Controleer of de response OK is (status 200-299)
+                if (!response.ok) {
+                     throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); // Verwacht een JSON antwoord
+            })
+            .then(data => {
+                // Verwerk het antwoord van de server
+                if (data.success) {
+                    confirmationMessage.textContent = data.message; // Toon succesboodschap van server
+                    confirmationMessage.style.display = 'block';
+                    confirmationMessage.style.backgroundColor = '#dff0d8'; // Groene achtergrond
+                    confirmationMessage.style.color = '#3c763d'; // Donkergroene tekst
+                    appointmentForm.reset(); // Reset formulier na succesvolle verzending
 
-            // BELANGRIJK: Implementeer hier de echte AJAX request naar je server-side script!
+                    // Optioneel: Verberg het formulier na succes
+                    // formContainer.classList.remove('active');
+                    // openFormButton.style.display = 'block'; // Toon de knop eventueel weer
+                } else {
+                    confirmationMessage.textContent = data.message; // Toon foutboodschap van server
+                    confirmationMessage.style.display = 'block';
+                    confirmationMessage.style.backgroundColor = '#f2dede'; // Rode/roze achtergrond
+                    confirmationMessage.style.color = '#a94442'; // Donkerrode tekst
+                }
+            })
+            .catch((error) => {
+                // Afhandeling van netwerkfouten e.d.
+                console.error('Error:', error);
+                confirmationMessage.textContent = 'Er is een algemene fout opgetreden. Probeer het later opnieuw.';
+                confirmationMessage.style.display = 'block';
+                confirmationMessage.style.backgroundColor = '#f2dede';
+                confirmationMessage.style.color = '#a94442';
+            });
         });
     }
-});
+// ... (einde DOMContentLoaded) ...

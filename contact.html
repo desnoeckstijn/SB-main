@@ -7,7 +7,7 @@
     <!-- Link naar je CSS-bestand hier -->
     <link rel="stylesheet" href="style.css">
      <!-- Google reCAPTCHA v2 API script -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 </head>
 <body>
     <header>
@@ -49,8 +49,13 @@
                     <label for="adres">Adres:</label>
                     <input type="text" id="adres" name="adres" required>
 
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Telefoon:</label>
+                    <input type="text" id="phone" name="phone" required>
+
                     <label for="massage">Keuze massage:</label>
-                    <select id="massage" name="massage" required>
                         <option value="">-- Kies een massage --</option>
                         <option value="volledige-ontspanningsmassage">Volledige ontspanningsmassage (75 min)</option>
                         <option value="kennismakingssessie">Kennismakingssessie (60 min)</option>
@@ -63,7 +68,7 @@
                     <textarea id="opmerkingen" name="opmerkingen"></textarea>
 
                     <!-- Google reCAPTCHA v2 widget -->
-                    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                    <!-- <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div> -->
 
                     <button type="submit">Verzenden</button>
                 </form>

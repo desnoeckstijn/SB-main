@@ -259,6 +259,58 @@ $pdo = null; // Sluit de database verbinding
     <script>
         // Embed PHP data as JSON for JavaScript
         const aanvragenData = <?php echo json_encode($aanvragen ?? []); ?>;
+
+        const modal = document.getElementById('moreInfoModal');
+        const modalDetails = document.getElementById('modalDetails');
+        const closeButton = document.querySelector('.close-button');
+        const moreInfoButtons = document.querySelectorAll('.more-info-btn');
+
+        // Function to display modal with application details
+        function showModal(application) {
+            modalDetails.innerHTML = ''; // Clear previous content
+            for (const key in application) {
+                if (application.hasOwnProperty(key)) {
+                    const detailElement = document.createElement('p');
+                    let value = application[key];
+
+                    // Format specific fields if needed
+                    if (key === 'recaptcha_success') {
+                         value = value ? 'Ja' : 'Nee';
+                    }
+                     if (key === 'opmerkingen') {
+                        value = value.replace(/\n/g, '<br>'); // Replace newlines with <br> for display
+                    }
+
+                    detailElement.innerHTML = `<strong>${key.replace(/_/g, ' ')}:</strong> ${value}`;
+                    modalDetails.appendChild(detailElement);
+                }
+            }
+            modal.style.display = 'block';
+        }
+
+        // Event listeners for buttons
+        moreInfoButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const applicationId = button.getAttribute('data-id');
+                const application = aanvragenData.find(app => app.ID == applicationId); // Use == for potential type coercion
+                if (application) {
+                    showModal(application);
+                }
+            });
+        });
+
+        // Event listener for close button
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Event listener to close modal when clicking outside the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
     </script>
 
 </body>

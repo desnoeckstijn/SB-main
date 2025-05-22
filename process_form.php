@@ -94,11 +94,12 @@ try {
 
 // 6. Sla de gegevens op in de database
 // Pas de kolomnamen hier aan als ze anders zijn in je tabel
-$insert_sql = "INSERT INTO $db_table (name, address, email, phone, massage_choice, preferred_time, comments, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1)"; // recaptcha_success is nu 1 (true)
+$insert_sql = "INSERT INTO $db_table (naam, adres, email, phone, massage, tijdstip, opmerkingen, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1)"; // recaptcha_success is nu 1 (true)
 
         try {
             $stmt = $pdo->prepare($insert_sql);
-            $stmt->execute([$naam, $adres, $email, $phone, $massage, $tijdstip, $opmerkingen]);
+            // Aangepast: Geef 8 waarden door voor de 8 placeholders
+            $stmt->execute([$naam, $adres, $email, $phone, $massage, $tijdstip, $opmerkingen, 1]); // Voeg 1 toe voor recaptcha_success
 
             // Als de insert succesvol was
             $response['success'] = true;

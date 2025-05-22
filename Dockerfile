@@ -12,6 +12,8 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 #. Apache warning: “Could not reliably determine the server’s fully qualified domain name”
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# PHP PDO MySQL Extensie 
-RUN docker-php-ext-install pdo pdo_mysql
-RUN docker-php-ext-enable pdo pdo_mysql
+# PHP PDO MySQL Extensie
+# Installeer en schakel de pdo_mysql extensie in
+RUN docker-php-ext-install pdo pdo_mysql \
+    && docker-php-ext-enable pdo_mysql
+    # De 'pdo' extensie is vaak al ingeschakeld, maar kan geen kwaad om mee te installeren.

@@ -65,6 +65,11 @@ nav a:hover {
     transition: background-color 0.3s ease;
 }
 
+.afspraak-knop a {
+    color: #fff !important; /* Zorgt ervoor dat de tekst in de knop altijd wit is */
+    text-decoration: none; /* Verwijder eventuele onderstreping */
+}
+
 .afspraak-knop:hover {
     background-color: #84a17c;
 }

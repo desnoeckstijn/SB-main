@@ -436,7 +436,7 @@ nav a:hover {
     color: #555;
 }
 
-.form-container form input[type="text"], 
+.form-container form input, 
 .form-container form select,
 .form-container form textarea {
     width: 100% !important;

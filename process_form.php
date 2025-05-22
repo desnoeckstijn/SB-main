@@ -92,19 +92,20 @@ try {
      exit;
 }
 
+
 // 6. Sla de gegevens op in de database
 // Pas de kolomnamen hier aan als ze anders zijn in je tabel
-$insert_sql = "INSERT INTO $db_table (naam, adres, email, phone, massage, tijdstip, opmerkingen, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1)"; // recaptcha_success is nu 1 (true)
+// Correctie: Aantal placeholders in VALUES moet overeenkomen met aantal waarden in execute
+$insert_sql = "INSERT INTO $db_table (naam, adres, email, phone, massage, tijdstip, opmerkingen, recaptcha_success, submission_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())"; // 8 placeholders voor 8 waarden, NOW() direct
 
         try {
             $stmt = $pdo->prepare($insert_sql);
-            // Aangepast: Geef 8 waarden door voor de 8 placeholders
-            $stmt->execute([$naam, $adres, $email, $phone, $massage, $tijdstip, $opmerkingen, 1]); // Voeg 1 toe voor recaptcha_success
+            // Geef 8 waarden door voor de 8 placeholders
+            $stmt->execute([$naam, $adres, $email, $phone, $massage, $tijdstip, $opmerkingen, 1]); // Voeg 1 toe voor recaptcha_success placeholder
 
             // Als de insert succesvol was
             $response['success'] = true;
             $response['message'] = 'Bedankt! Je aanvraag werd goed verzonden en opgeslagen.';
-
             // --- E-mail Notificatie (Optioneel, hier later te implementeren) ---
             // Je kunt hier de e-mailverzending activeren na succesvolle database opslag,
             // of een apart proces gebruiken dat de database periodiek controleert.

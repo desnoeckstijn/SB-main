@@ -1,3 +1,14 @@
+/* Verberg het hamburger icoon op desktop en voeg test stijl toe */
+@media (min-width: 769px) {
+    .hamburger-icon {
+        display: none !important; /* Test: verberg met hoge prioriteit */
+        background-color: red !important; /* Test: opvallende achtergrond */
+    }
+     nav ul {
+        display: flex !important; /* Zorg dat het menu altijd zichtbaar is op desktop */
+     }
+}
+
 /* style.css */
 
 body {
@@ -232,15 +243,6 @@ nav a:hover {
     }
 
 
-    /* Verberg het hamburger icoon op desktop */
-    @media (min-width: 769px) {
-        .hamburger-icon {
-            display: none;
-        }
-         nav ul {
-            display: flex !important; /* Zorg dat het menu altijd zichtbaar is op desktop */
-         }
-    }
 
     /* Hero sectie aanpassingen voor mobiel */
     .hero {

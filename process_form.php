@@ -31,16 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $massage = htmlspecialchars(trim($_POST['massage'] ?? ''));
     $tijdstip = htmlspecialchars(trim($_POST['tijdstip'] ?? ''));
     $opmerkingen = htmlspecialchars(trim($_POST['opmerkingen'] ?? ''));
-    $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
+   // $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
 
     // 2. Valideer verplichte velden
-    if (empty($naam) || empty($adres) || empty($email) || empty($phone) || empty($massage) || empty($recaptcha_response)) {
-        $response['message'] = 'Vul alstublieft alle verplichte velden in, inclusief reCAPTCHA.';
+    if (empty($naam) || empty($adres) || empty($email) || empty($phone) || empty($massage)) { //  || empty($recaptcha_response)
+        $response['message'] = 'Vul alstublieft alle verplichte velden in.';
         echo json_encode($response);
         exit;
     }
 
-    // 3. reCAPTCHA Verificatie
+   /* // 3. reCAPTCHA Verificatie
     $verification_url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = array(
         'secret' => $recaptcha_secret,
@@ -73,7 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($recaptcha_success) { // Contoleer of reCAPTCHA succesvol was
 
         // 5. Maak verbinding met de database
-        try {
+*/
+         // 5. Maak verbinding met de database
+
+       try {
             $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4";
             $options = [
                 PDO::ATTR_ERRMODE            =>(string) PDO::ERRMODE_EXCEPTION, // Gooi exceptions bij fouten
@@ -92,11 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // 6. Sla de gegevens op in de database
         // Pas de kolomnamen hier aan als ze anders zijn in je tabel
-        $insert_sql = "INSERT INTO $db_table (name, address, email, phone, massage_choice, preferred_time, comments, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+        $insert_sql = "INSERT INTO $db_table (name, address, email, phone, massage_choice, preferred_time, comments, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1)"; // recaptcha_success is nu 1 (true)
 
         try {
             $stmt = $pdo->prepare($insert_sql);
-            $stmt->execute([$naam, $adres, $email, $phone, $massage, $tijdstip, $opmerkingen, $recaptcha_success]);
+            $stmt->execute([$naam, $adres, $email, $phone, $massage, $tijdstip, $opmerkingen]);
 
             // Als de insert succesvol was
             $response['success'] = true;
@@ -135,11 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              $response['message'] = 'Er is een fout opgetreden bij het opslaan van je aanvraag.';
         }
 
-    } else {
-        // reCAPTCHA verificatie mislukt
-        $response['message'] = 'reCAPTCHA verificatie mislukt. Probeer het opnieuw.';
-        // error_log("reCAPTCHA Error: " . print_r($recaptcha_decoded['error-codes'], true)); // Log errors van Google
-    }
+//    } else {
+//        // reCAPTCHA verificatie mislukt
+//        $response['message'] = 'reCAPTCHA verificatie mislukt. Probeer het opnieuw.';
+//        // error_log("reCAPTCHA Error: " . print_r($recaptcha_decoded['error-codes'], true)); // Log errors van Google
+//    }
 
 } else {
     // Ongeldige aanvraagmethode
@@ -150,4 +153,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 echo json_encode($response);
 
 ?>
-```

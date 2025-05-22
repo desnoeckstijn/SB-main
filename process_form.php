@@ -9,10 +9,10 @@ $response = array('success' => false, 'message' => 'Er ging iets mis bij de verw
 
 // Database Connectie Gegevens
 // <<< VERVANG DEZE PLACEHOLDERS met jouw database gegevens
-$db_host = 'localhost'; // Of de naam van je database service in Docker Compose
-$db_name = 'jouw_database_naam'; // <<<
-$db_user = 'jouw_database_gebruiker'; // <<<
-$db_pass = 'jouw_database_wachtwoord'; // <<<
+$db_host = 'db'; // Of de naam van je database service in Docker Compose
+$db_name = 'contactdb'; // <<<
+$db_user = 'admin'; // <<<
+$db_pass = 'geheim'; // <<<
 $db_table = 'aanvragen'; // De naam van de tabel die je hebt aangemaakt
 
 // reCAPTCHA Geheime Sleutel

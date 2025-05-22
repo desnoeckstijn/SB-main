@@ -196,8 +196,9 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
 }
 
+
 .image-text-section .text-container {
-    flex: 2; /* Allow text container to take up more space */
+    flex: 1; /* Allow text container to take up more space */
 }
 
 /* Responsive adjustments for the image-text section */

@@ -74,28 +74,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // 5. Maak verbinding met de database
 */
-         // 5. Maak verbinding met de database
+error_log("Poging tot verbinden met database. Host: " . $db_host . ", DB: " . $db_name . ", User: " . $db_user);
+try {
+    $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4"; // Voeg hier poort=3306 toe als test
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    $pdo = new PDO($dsn, $db_user, $db_pass, $options);
+    error_log("Database verbinding succesvol!"); // Deze lijn zal je zien als de connectie lukt
 
-       try {
-            $dsn = "mysql:host=$db_host;port=3306;dbname=$db_name;charset=utf8mb4";
-            $options = [
-                PDO::ATTR_ERRMODE            =>(string) PDO::ERRMODE_EXCEPTION, // Gooi exceptions bij fouten
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Haal data op als associatieve array
-                PDO::ATTR_EMULATE_PREPARES   => false, // Gebruik echte prepared statements
-            ];
-            $pdo = new PDO($dsn, $db_user, $db_pass, $options);
+} catch (\PDOException $e) {
+     error_log("Database Connectie Fout: " . $e->getMessage()); // DEZE fout wil je zien om de precieze reden te achterhalen
+     $response['message'] = 'Er kon geen verbinding worden gemaakt met de database.'; // Deze boodschap krijgt de gebruiker
+     echo json_encode($response);
+     exit;
+}
 
-        } catch (\PDOException $e) {
-             // Log database connectie fouten (vermijd details in response)
-             // error_log("Database Connectie Fout: " . $e->getMessage());
-             $response['message'] = 'Er kon geen verbinding worden gemaakt met de database.';
-             echo json_encode($response);
-             exit;
-        }
-
-        // 6. Sla de gegevens op in de database
-        // Pas de kolomnamen hier aan als ze anders zijn in je tabel
-        $insert_sql = "INSERT INTO $db_table (name, address, email, phone, massage_choice, preferred_time, comments, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1)"; // recaptcha_success is nu 1 (true)
+// 6. Sla de gegevens op in de database
+// Pas de kolomnamen hier aan als ze anders zijn in je tabel
+$insert_sql = "INSERT INTO $db_table (name, address, email, phone, massage_choice, preferred_time, comments, submission_time, recaptcha_success) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1)"; // recaptcha_success is nu 1 (true)
 
         try {
             $stmt = $pdo->prepare($insert_sql);

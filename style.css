@@ -115,13 +115,49 @@ nav a:hover {
     color: #333;
 }
 
-footer {
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
-    font-size: 0.9em;
-    color: #777;
-    border-top: 1px solid #eee;
+    footer {
+        background-color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9em;
+        color: #777;
+        border-top: 1px solid #eee;
+    }
+
+/* Styling voor algemene content secties op de homepage */
+.content-section {
+    padding: 50px; /* Gelijke padding als andere content secties */
+    text-align: left; /* Lijn de tekst links uit */
+    max-width: 960px; /* Max breedte voor content */
+    margin: 0 auto; /* Centreer het content blok en verwijder top/bottom margin die conflicteert met padding */
+}
+
+.content-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;  /* Optioneel: voeg een lijn toe onder de titels */
+    padding-bottom: 10px;
+}
+
+.content-section p, .content-section ul {
+     margin-bottom: 15px;
+     line-height: 1.6;
+}
+
+.content-section ul {
+    list-style: disc; /* Gebruik bolletjes voor de lijsten */
+    margin-left: 20px; /* Voeg inspringing toe */
+}
+
+.content-section a {
+    color: #a6c79a; /* Kleur voor links */
+    text-decoration: none;
+}
+
+.content-section a:hover {
+    text-decoration: underline; /* Onderstrepen bij hover */
 }
 
 /* Media Queries voor Responsive Design (voorbeeld) */

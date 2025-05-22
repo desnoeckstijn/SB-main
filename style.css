@@ -232,6 +232,83 @@ footer {
         font-size: 1.8em;
     }
 }
+
+/* Styling voor de tarieven pagina */
+#tarieven {
+    padding: 50px;
+    text-align: left; /* Lijn de tekst links uit */
+    max-width: 960px; /* Max breedte voor content */
+    margin: 20px auto; /* Centreer het content blok */
+}
+
+#tarieven h1, #tarieven h2, #tarieven h3 {
+    text-align: left; /* Zorg dat de titels ook links uitgelijnd zijn */
+    color: #333;
+    font-family: 'Playfair Display', serif;
+}
+
+#tarieven h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#tarieven h2 {
+     font-size: 2em;
+     margin-bottom: 15px;
+     border-bottom: 1px solid #eee;  /* Optioneel: voeg een lijn toe onder de titels */
+     padding-bottom: 10px;
+}
+
+#tarieven h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+#tarieven article p, #tarieven section p, #tarieven ul {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.massage-item {
+    margin-bottom: 20px; /* Ruimte onder elk massage item */
+    padding-bottom: 20px; /* Ruimte boven de border */
+    border-bottom: 1px solid #eee; /* Lichte lijn onder elk item */
+}
+
+.massage-item:last-child {
+    border-bottom: none; /* Geen lijn onder het laatste item */
+}
+
+#praktische-info ul {
+    list-style: disc; /* Gebruik bolletjes voor de lijst */
+    margin-left: 20px; /* Voeg inspringing toe */
+}
+
+#afspraak p {
+    margin-top: 30px; /* Ruimte boven de afspraaklink */
+}
+
+/* Responsive aanpassingen voor tarieven pagina */
+@media (max-width: 768px) {
+    #tarieven {
+        padding: 30px 15px; /* Pas padding aan voor mobiel */
+        margin: 10px auto; /* Pas margin aan */
+    }
+
+    #tarieven h1 {
+        font-size: 2em;
+    }
+
+    #tarieven h2 {
+        font-size: 1.8em;
+    }
+
+    #tarieven h3 {
+        font-size: 1.3em;
+    }
+}
+
 /* Style voor de over-mij pagina */
 
 .over-mij-hero {

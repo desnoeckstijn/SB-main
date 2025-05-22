@@ -44,10 +44,6 @@ nav ul {
     gap: 20px; /* Voegt ruimte toe tussen de items */
 }
 
-nav li {
-    /* margin-left: 20px; is vervangen door gap op ul */
-}
-
 nav a {
     text-decoration: none;
     color: #555;

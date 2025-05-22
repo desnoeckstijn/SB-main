@@ -121,10 +121,13 @@ $pdo = null; // Sluit de database verbinding
     <style>
         /* Specifieke styling voor de admin pagina tabellen */
         .admin-table {
-            width: 95%;
-            margin: 20px auto;
+            width: 95%; /* Responsieve breedte */
+            max-width: 1200px; /* Maximale breedte op grote schermen */
+            margin: 20px auto; /* Centreert de tabel horizontaal */
             border-collapse: collapse; /* Verwijder ruimte tussen cellen */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: block; /* Zorgt ervoor dat margin: auto werkt */
+            overflow-x: auto; /* Voegt scrollbar toe op kleine schermen indien nodig */
         }
         .admin-table th, .admin-table td {
             padding: 12px 15px;
@@ -144,12 +147,23 @@ $pdo = null; // Sluit de database verbinding
         .admin-table td {
             word-wrap: break-word; /* Zorgt dat lange teksten breken */
         }
+         /* Pas de content-section padding aan voor de admin pagina om de tabel meer ruimte te geven */
+        .content-section.admin-content {
+            padding: 20px; /* Minder padding rond de content sectie op admin pagina */
+        }
+
+        @media (max-width: 768px) {
+            .admin-table th, .admin-table td {
+                padding: 8px 10px; /* Pas padding aan op kleinere schermen */
+            }
+        }
+
     </style>
 </head>
 <body>
 
     <main>
-        <section class="content-section">
+        <section class="content-section admin-content"> <!-- Voeg extra klasse toe -->
             <h1>Aanvragen Overzicht</h1>
 
             <?php if (empty($aanvragen)): ?>

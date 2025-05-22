@@ -14,6 +14,10 @@
             <img src="logo.png" alt="Siente Bien Logo">
             <span>Pure ontspanning bij jou thuis</span>
         </div>
+        <!-- Hamburger Icon voor mobiel -->
+        <button class="hamburger-icon" aria-label="Toggle menu">
+            &#9776; <!-- Unicode voor hamburger icoon -->
+        </button>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -47,5 +51,18 @@
         <!-- Voeg hier een mini-contactformulier of afspraakknop toe -->
         <!-- Voetnoot met sociale media (optioneel) -->
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerButton = document.querySelector('.hamburger-icon');
+            const header = document.querySelector('header');
+
+            if (hamburgerButton && header) {
+                hamburgerButton.addEventListener('click', function() {
+                    header.classList.toggle('nav-open');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

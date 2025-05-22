@@ -131,62 +131,97 @@ footer {
 /* Media Queries voor Responsive Design (voorbeeld) */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        align-items: center; /* Centreer de header items op mobiel */
-        padding: 15px; /* Pas padding aan voor mobiel */
+        flex-direction: row; /* Terug naar rij-richting om ruimte te maken voor hamburger */
+        justify-content: space-between; /* Verdeel logo en hamburger */
+        align-items: center;
+        padding: 15px;
+        position: relative; /* Nodig voor absolute positionering van het menu */
     }
 
     .logo {
-        margin-bottom: 15px; /* Verhoog de afstand onder het logo */
+        margin-bottom: 0; /* Geen bottom margin meer nodig */
     }
 
     .logo span {
-        font-size: 0.9em; /* Pas lettergrootte van tagline aan */
+        font-size: 0.9em;
     }
 
+    /* Standaard verberg de navigatielijst op mobiel */
     nav ul {
+        display: none;
         flex-direction: column;
-        width: 100%; /* Zorg dat de nav de volledige breedte gebruikt */
-        align-items: center; /* Centreer de menu-items verticaal */
-        gap: 10px; /* Ruimte tussen de menu-items op mobiel */
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Plaats het menu direct onder de header */
+        left: 0;
+        background-color: #fff; /* Witte achtergrond voor het open menu */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        z-index: 10; /* Zorgt dat het menu boven andere content ligt */
+    }
+
+    /* Toon de navigatielijst wanneer de .nav-open class aanwezig is op de header */
+    header.nav-open ul {
+        display: flex; /* Toon het menu */
     }
 
     nav li {
         margin-left: 0;
-        /* margin-bottom: 10px; is vervangen door gap op ul */
-        width: 100%; /* Zorg dat elk list-item de volledige breedte gebruikt */
-        text-align: center; /* Centreer de tekst in de list-items */
+        text-align: center;
+        padding: 10px 0; /* Voeg padding toe aan list items */
     }
 
     nav a {
-        display: block; /* Zorg dat de link de volledige klikbare ruimte inneemt */
-        padding: 10px; /* Vergroot het klikbare gebied */
+        display: block;
+        padding: 5px 0; /* Pas padding aan binnen list item */
     }
 
     .afspraak-knop {
-        margin-top: 10px; /* Voeg wat ruimte toe boven de knop op mobiel */
-        width: auto; /* Zorg dat de knop niet de volledige breedte inneemt */
-        padding: 10px 20px; /* Behoud de padding van de knop */
+         /* Pas de styling van de knop in het mobiele menu hier aan indien nodig */
+        margin-top: 0; /* Geen top margin nodig in het mobiele menu */
+        padding: 10px 20px; /* Behoud de padding */
+        /* eventueel background-color aanpassen */
     }
 
+    /* Voeg hier styling toe voor je hamburger icoon/knop (je moet de HTML zelf toevoegen) */
+    .hamburger-icon {
+        display: block; /* Toon het hamburger icoon op mobiel */
+        font-size: 1.8em; /* Pas grootte aan */
+        cursor: pointer;
+        background: none; /* Geen achtergrond */
+        border: none; /* Geen rand */
+        color: #555; /* Kleur van het icoon */
+        padding: 0; /* Geen padding */
+    }
 
+    /* Verberg het hamburger icoon op desktop */
+    @media (min-width: 769px) {
+        .hamburger-icon {
+            display: none;
+        }
+         nav ul {
+            display: flex !important; /* Zorg dat het menu altijd zichtbaar is op desktop */
+         }
+    }
+
+    /* Hero sectie aanpassingen voor mobiel */
     .hero {
-        flex-direction: column; /* Stapel content en afbeelding */
+        flex-direction: column;
         text-align: center;
-        padding: 30px 15px; /* Pas padding aan voor mobiel */
+        padding: 30px 15px;
     }
 
     .hero-content {
         padding-right: 0;
-        margin-bottom: 30px; /* Ruimte tussen content en afbeelding */
+        margin-bottom: 30px;
     }
 
     .hero h1 {
-        font-size: 2em; /* Pas lettergrootte aan voor mobiel */
+        font-size: 2em;
     }
 
     .hero p {
-        font-size: 1em; /* Pas lettergrootte aan voor mobiel */
+        font-size: 1em;
     }
 
     .hero-image {
@@ -194,11 +229,11 @@ footer {
     }
 
     .mijn-benadering {
-        padding: 30px 15px; /* Pas padding aan voor mobiel */
+        padding: 30px 15px;
     }
 
     .mijn-benadering h2 {
-        font-size: 1.8em; /* Pas lettergrootte aan voor mobiel */
+        font-size: 1.8em;
     }
 }
 /* Style voor de over-mij pagina */

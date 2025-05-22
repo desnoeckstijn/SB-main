@@ -1,7 +1,7 @@
 /* Verberg het hamburger icoon op desktop en voeg test stijl toe */
 @media (min-width: 769px) {
     .hamburger-icon {
-        display: none !important; /* Test: verberg met hoge prioriteit */
+        display: none !important; /* Test: verberg met hoge priority */
         background-color: red !important; /* Test: opvallende achtergrond */
     }
      nav ul {
@@ -52,7 +52,7 @@ nav ul {
     margin: 0;
     display: flex;
     align-items: center; /* Zorgt voor verticale uitlijning van alle items */
-    gap: 20px; /* Voegt ruimte toe tussen de items */
+    gap: 20px; /* Voeg ruimte toe tussen de items */
 }
 
 nav a {
@@ -183,6 +183,10 @@ nav a:hover {
     gap: 40px; /* Add space between the image and text */
 }
 
+.image-text-section.image-left {
+    flex-direction: row-reverse; /* Reverse the order for image on left */
+}
+
 .image-text-section .image-container {
     flex: 1; /* Allow image container to grow and shrink */
     min-width: 250px; /* Minimum width for the image container */
@@ -208,109 +212,12 @@ nav a:hover {
         gap: 20px; /* Adjust gap for stacked layout */
     }
 
+    .image-text-section.image-left {
+        flex-direction: column; /* Ensure stacking order is consistent on mobile */
+    }
+
     .image-text-section .image-container {
         min-width: 100%; /* Full width for image container on small screens */
-    }
-}
-
-/* Media Queries voor Responsive Design (voorbeeld) */
-@media (max-width: 768px) {
-    header {
-        flex-direction: row; /* Terug naar rij-richting om ruimte te maken voor hamburger */
-        justify-content: space-between; /* Verdeel logo en hamburger */
-        align-items: center;
-        padding: 15px;
-        position: relative; /* Nodig voor absolute positionering van het menu */
-    }
-
-    .logo {
-        margin-bottom: 0; /* Geen bottom margin meer nodig */
-    }
-
-    .logo span {
-        font-size: 0.9em;
-    }
-
-    /* Standaard verberg de navigatielijst op mobiel */
-    nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 100%; /* Plaats het menu direct onder de header */
-        left: 0;
-        background-color: #fff; /* Witte achtergrond voor het open menu */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        padding: 10px 0;
-        z-index: 10; /* Zorgt dat het menu boven andere content ligt */
-    }
-
-    /* Toon de navigatielijst wanneer de .nav-open class aanwezig is op de header */
-    header.nav-open ul {
-        display: flex; /* Toon het menu */
-    }
-
-    nav li {
-        margin-left: 0;
-        text-align: center;
-        padding: 10px 0; /* Voeg padding toe aan list items */
-    }
-
-    nav a {
-        display: block;
-        padding: 5px 0; /* Pas padding aan binnen list item */
-    }
-
-    .afspraak-knop {
-         /* Pas de styling van de knop in het mobiele menu hier aan indien nodig */
-        margin-top: 0; /* Geen top margin nodig in het mobiele menu */
-        padding: 10px 20px; /* Behoud de padding */
-        /* eventueel background-color aanpassen */
-    }
-
-    /* Voeg hier styling toe voor je hamburger icoon/knop (je moet de HTML zelf toevoegen) */
-    .hamburger-icon {
-        display: block; /* Toon het hamburger icoon op mobiel */
-        font-size: 1.8em; /* Pas grootte aan */
-        cursor: pointer;
-        background: none; /* Geen achtergrond */
-        border: none; /* Geen rand */
-        color: #555; /* Kleur van het icoon */
-        padding: 0; /* Geen padding */
-    }
-
-
-
-    /* Hero sectie aanpassingen voor mobiel */
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 15px;
-    }
-
-    .hero-content {
-        padding-right: 0;
-        margin-bottom: 30px;
-    }
-
-    .hero h1 {
-        font-size: 2em;
-    }
-
-    .hero p {
-        font-size: 1em;
-    }
-
-    .hero-image {
-        text-align: center;
-    }
-
-    .mijn-benadering {
-        padding: 30px 15px;
-    }
-
-    .mijn-benadering h2 {
-        font-size: 1.8em;
     }
 }
 
